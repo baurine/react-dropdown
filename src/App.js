@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import DropDrow1 from './DropDown1';
+import DropDrow2 from './DropDown2';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         </header>
         <div className="App-body">
           <DropDrow1/>
+          <DropDrow2/>
           <p>some content here</p>
           <p>some content here</p>
           <p>some content here</p>
