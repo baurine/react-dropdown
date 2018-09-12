@@ -44,8 +44,8 @@ export default class DropDrow1 extends React.Component {
         <div className="dropdown-head">
           {
             dropDownExpanded ?
-            <div>Collapse dropdown menu</div> :
-            <div onClick={this.handleHeadClick}>Open dropdown menu</div>
+            <button>Collapse dropdown menu</button> :
+            <button onClick={this.handleHeadClick}>Open dropdown menu</button>
           }
         </div>
         {
