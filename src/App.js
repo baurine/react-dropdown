@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import DropDrow1 from './DropDown1';
 import DropDrow2 from './DropDown2';
+import DropDrow3 from './DropDown3';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <div className="App-body">
           <DropDrow1/>
           <DropDrow2/>
+          <DropDrow3/>
           <p>some content here</p>
           <p>some content here</p>
           <p>some content here</p>
