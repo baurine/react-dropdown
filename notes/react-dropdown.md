@@ -101,7 +101,7 @@ React 有两套事件系统，一套是原生事件系统，就是 `document.add
 
 1. 在 `componentWillUnmount()` 中要移除 document 的 click handler，以免造成内存泄漏。
 
-      componentWillUnmount() {
-        // important! we need remove global click handler when unmout
-        document.removeEventListener('click', this.handleGlobalClick)
-      }
+        componentWillUnmount() {
+          // important! we need remove global click handler when unmout
+          document.removeEventListener('click', this.handleGlobalClick)
+        }
