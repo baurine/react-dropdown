@@ -25,6 +25,10 @@ dropdown 是一种很常见的 component，一般有两种：
 
 - [React 合成事件和原生事件的阻止冒泡](http://echizen.github.io/tech/2017/04-02-Reactjquery-event-system)
 
+React 的 issue:
+
+- [e.stopPropagation() seems to not be working as expect.](https://github.com/facebook/react/issues/4335)
+
 React 有两套事件系统，一套是原生事件系统，就是 `document.addEventListener()` 这种 API，另一套是 React 自己定义的，叫 SyntheticEvent (合成事件)，比如下例中的 `onClick`。
 
     <a onClick={this.clickLink}>Open</a>
@@ -36,6 +40,8 @@ React 有两套事件系统，一套是原生事件系统，就是 `document.add
 所以你会发现，为什么我已经在 menu 内部的点击事件 handler 中 stopPropagation 了，为什么全局的 click handler 还是会执行，这就是原因。
 
 但是! React 的合成事件的 stopPropagation 虽然不能阻止事件冒泡到 document，但它可以阻止事件冒泡到 window。
+
+(这件事让我想起，在某个项目中，我用了 React 的 `event.stopPropagation()`，导致 turbolinks 不工作了，当时觉得很理所当然，现在回想，不对，turoblinks 绑定的是原生事件，如果它是绑在 `<a>` tag 上的话，不应该不工作的啊，由此我推断 turbolinks 的 click 事件是绑定在 window 上的，后来看了源码，的确是这样的)
 
 所以，为了在 React 的 dropdown 中实现点击 menu 外部收起 menu，点击内部不收起 menu，有两种办法：
 
