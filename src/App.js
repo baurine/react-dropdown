@@ -14,6 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-body">
+          <a href="https://github.com/baurine/react-dropdown">Go to GitHub</a>
           <DropDrow1/>
           <p>Dropdown menu will disappear when clicking anywhere, even inside the menu,</p>
           <p>implemented by "document.addEventListener('click', this.handleGlobalClick)"</p>
