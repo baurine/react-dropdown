@@ -26,20 +26,14 @@ export default class DropDrow3 extends React.Component {
     this.setState({dropDownExpanded: true})
     setTimeout(()=>{
       // must run in the next tick
+      // and, must addEventListener in window, can't in document
       window.addEventListener('click', this.handleGlobalClick)
     }, 0)
   }
 
-  handleOptionClick = (event, option) => {
-    console.log('option click')
-    console.log(option)
-    console.log(event.target.checked)
-  }
-
   handleBodyClick = (event) => {
     console.log('body click')
-    // doesn't work at all before
-    // wierd, it already work in react 16.5.0 ...
+    // just can stop event propagate from document to window
     event.stopPropagation()
   }
 
@@ -50,6 +44,12 @@ export default class DropDrow3 extends React.Component {
     window.removeEventListener('click', this.handleGlobalClick)
   }
 
+  handleOptionClick = (event, option) => {
+    console.log('option click')
+    console.log(option)
+    console.log(event.target.checked)
+  }
+
   render() {
     const { dropDownExpanded } = this.state
     return (
@@ -57,8 +57,8 @@ export default class DropDrow3 extends React.Component {
         <div className="dropdown-head">
           {
             dropDownExpanded ?
-            <button>Collapse dropdown menu</button> :
-            <button onClick={this.handleHeadClick}>Open dropdown menu</button>
+            <button>Collapse dropdown menu - 3</button> :
+            <button onClick={this.handleHeadClick}>Open dropdown menu - 3</button>
           }
         </div>
         {

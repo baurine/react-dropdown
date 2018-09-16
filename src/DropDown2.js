@@ -17,7 +17,7 @@ export default class DropDrow2 extends React.Component {
 
   componentWillUnmount() {
     // important! we need remove global click handler when unmout
-    window.removeEventListener('click', this.handleGlobalClick)
+    document.removeEventListener('click', this.handleGlobalClick)
   }
 
   handleHeadClick = () => {
@@ -26,27 +26,24 @@ export default class DropDrow2 extends React.Component {
     this.setState({dropDownExpanded: true})
     setTimeout(()=>{
       // must run in the next tick
-      window.addEventListener('click', this.handleGlobalClick)
+      document.addEventListener('click', this.handleGlobalClick)
     }, 0)
   }
 
   handleGlobalClick = (event) => {
     console.log('global click')
+
     // use DOMNode.contains() method to judge click target is in or out of the dropdown body
     if (this._dropdown_body && this._dropdown_body.contains(event.target)) return
 
     this.setState({dropDownExpanded: false})
-    window.removeEventListener('click', this.handleGlobalClick)
+    document.removeEventListener('click', this.handleGlobalClick)
   }
 
   handleOptionClick = (event, option) => {
     console.log('option click')
     console.log(option)
     console.log(event.target.checked)
-
-    // doesn't work at all before
-    // wierd, it already work in react 16.5.0 ...
-    // event.stopPropagation()
   }
 
   render() {
@@ -56,8 +53,8 @@ export default class DropDrow2 extends React.Component {
         <div className="dropdown-head">
           {
             dropDownExpanded ?
-            <button>Collapse dropdown menu</button> :
-            <button onClick={this.handleHeadClick}>Open dropdown menu</button>
+            <button>Collapse dropdown menu - 2</button> :
+            <button onClick={this.handleHeadClick}>Open dropdown menu - 2</button>
           }
         </div>
         {

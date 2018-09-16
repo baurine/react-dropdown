@@ -17,23 +17,28 @@ export default class DropDrow1 extends React.Component {
 
   componentWillUnmount() {
     // important! we need remove global click handler when unmout
-    window.removeEventListener('click', this.handleGlobalClick)
+    document.removeEventListener('click', this.handleGlobalClick)
   }
 
   handleHeadClick = () => {
+    console.log('head click')
+
     this.setState({dropDownExpanded: true})
     setTimeout(()=>{
       // must run in the next tick
-      window.addEventListener('click', this.handleGlobalClick)
+      document.addEventListener('click', this.handleGlobalClick)
     }, 0)
   }
 
   handleGlobalClick = () => {
+    console.log('global click')
+
     this.setState({dropDownExpanded: false})
-    window.removeEventListener('click', this.handleGlobalClick)
+    document.removeEventListener('click', this.handleGlobalClick)
   }
 
   handleOptionClick = (event, option) => {
+    console.log('option click')
     console.log(option)
   }
 
@@ -44,8 +49,8 @@ export default class DropDrow1 extends React.Component {
         <div className="dropdown-head">
           {
             dropDownExpanded ?
-            <button>Collapse dropdown menu</button> :
-            <button onClick={this.handleHeadClick}>Open dropdown menu</button>
+            <button>Collapse dropdown menu - 1</button> :
+            <button onClick={this.handleHeadClick}>Open dropdown menu - 1</button>
           }
         </div>
         {
