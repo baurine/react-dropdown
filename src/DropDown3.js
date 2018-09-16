@@ -2,16 +2,18 @@ import React from 'react'
 import './DropDown.css'
 
 const OPTIONS = [
-  { key: 1, text: 'Option 1'},
-  { key: 2, text: 'Option 2'},
-  { key: 3, text: 'Option 3'},
+  { key: 1, text: 'Option 1', checked: false },
+  { key: 2, text: 'Option 2', checked: false },
+  { key: 3, text: 'Option 3', checked: false },
 ]
 
 export default class DropDrow3 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dropDownExpanded: false
+      dropDownExpanded: false,
+
+      options: OPTIONS
     }
   }
 
@@ -47,7 +49,12 @@ export default class DropDrow3 extends React.Component {
   handleOptionClick = (event, option) => {
     console.log('option click')
     console.log(option)
-    console.log(event.target.checked)
+    
+    const checked = event.target.checked
+    console.log(checked)
+    const options = this.state.options.map(item =>
+      item.key === option.key ? {...item, checked} : item)
+    this.setState({options})
   }
 
   render() {
@@ -67,10 +74,11 @@ export default class DropDrow3 extends React.Component {
                onClick={this.handleBodyClick}>
             <ul>
               {
-                OPTIONS.map(option =>
+                this.state.options.map(option =>
                   <li key={option.key}
                       className="dropdown-item">
                     <input type='checkbox'
+                           checked={option.checked}
                            onChange={(e)=>this.handleOptionClick(e, option)}></input>
                     {option.text}
                   </li>
