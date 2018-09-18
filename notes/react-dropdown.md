@@ -4,18 +4,18 @@
 
 dropdown 是一种很常见的 component，一般有两种：
 
-1. 展开 dropdown menu 后，点击任意地方都应该收到 menu。
+1. 展开 dropdown menu 后，点击任意地方都应该收起 menu。
 1. 展开 dropdown menu 后，点击 menu 内部，不会收起 menu，只有点击 menu 外部，才收起 menu。
 
 在 jQuery 时代，dropdown 是很好实现的，直接用 `document.addEventListener('click', handler)`，监听 document 的 click 事件，然后让 dropdown 的 menu 隐藏起来。如果想让 menu 内部的点击不收起 menu，则让 menu 内部的点击事件执行 `event.stopPropagation()`。
 
 刚开始做 React 开发的时候，不知道是从哪接收到的思想，觉得 `document.addEventListener()` 的 API 不那么 React，很排斥使用。这样，在实现 dropdown component 时，怎么处理在 menu 以外点击时让 menu 收起来成了一个头疼的问题。
 
-我查了文档，觉得可以用 `onBlur` 这个事件，但为了能够接收到 `onBlur` 事件，menu 内部必须是 input 类型的 component，或者是有 tabIndex 属性，然后加上 tabIndex 后，当 component 处于 onFocus 时，会额外在边框上加上阴影的样式，像下图所示，必须额外再加 css 处理。总之，逻辑变得异常复杂了。
+我查了文档，觉得可以用 `onBlur` 这个事件，但为了能够接收到 `onBlur` 事件，menu 内部必须是 input 类型的 component，或者是有 tabIndex 属性，然后加上 tabIndex 后，当 component 处于 onFocus 时，会额外在边框上加上阴影的样式，像下图所示，必须额外再加 css 处理。总之，逻辑变得复杂了。
 
 ![](../art/outline.png)
 
-后来用 React 做了音乐播放器，才发现像 `audioElement.addEventListener('play', handler)` 这种 API 根本无法避免使用，再回过头来看 dropdown，如果直接也用 `document.addEventListener('click', handler)` API 的话，逻辑就变得很简单了。
+后来用 React 做音乐播放器，看别人的实现源码，发现他们都大都使用了 `audioElement.addEventListener('play', handler)` 这种原生 API，而且，有些逻辑如果不用原生事件就没法处理，比如监听 window 的 resize 事件，似乎除了用 `window.addEventListener('resize', handler)` 就没有其它办法了。因此再回过头来看 dropdown 的实现，如果也用 `document.addEventListener('click', handler)` 处理 menu 以后的点击的话，逻辑就简单多了。
 
 但是，也还是有坑的。
 
