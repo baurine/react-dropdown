@@ -1,6 +1,12 @@
 # 在 React 中实现 Dropdown 的总结
 
-总结一下在 React 中实现 dropdown component 的坑。实现看源码，没几行代码。
+## Demo
+
+![](../art/dropdown.gif)
+
+![](../art/dropdown.png)
+
+## Note
 
 dropdown 是一种很常见的 component，一般有两种：
 
@@ -68,7 +74,7 @@ React 有两套事件系统，一套是原生事件系统，就是 `document.add
 
 总结：
 
-> setState 只在合成事件和钩子函数中是 "异步" 的，在原生事件和 setTimeout 中都是同步的。
+> setState 只在合成事件和生命周期函数中是 "异步" 的，在原生事件和 setTimeout 中都是同步的。
 
 但在 twitter 上看 Dan 发推说以后可能会统一成异步操作，拭目以待。
 
