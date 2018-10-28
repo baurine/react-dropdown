@@ -4,6 +4,7 @@ import './App.css';
 import DropDrow1 from './DropDown1';
 import DropDrow2 from './DropDown2';
 import DropDrow3 from './DropDown3';
+import DropDrow4 from './DropDown4';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <p>use "window.addEventListener('click', this.handleGlobalClick)" and "event.stopPropagation()",</p>
           <p>Notice! "event.stopPropagation()" just can stop event propagate to window, can't stop propagate to document,</p>
           <p>that's why we use "window.addEventListener()" here, not "document.addEventListener()".</p>
+          <DropDrow4/>
         </div>
       </div>
     );
