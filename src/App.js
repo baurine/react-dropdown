@@ -6,6 +6,7 @@ import DropDown2 from './DropDown2';
 import DropDown3 from './DropDown3';
 import DropDown4 from './DropDown4';
 import DropDown5 from './DropDown5';
+import DropDown6 from './DropDown6';
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
           <p>that's why we use "window.addEventListener()" here, not "document.addEventListener()".</p>
           <DropDown4/>
           <DropDown5/>
+          <DropDown6/>
         </div>
       </div>
     );
