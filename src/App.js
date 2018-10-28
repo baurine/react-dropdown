@@ -29,9 +29,11 @@ class App extends Component {
           <p>use "window.addEventListener('click', this.handleGlobalClick)" and "event.stopPropagation()",</p>
           <p>Notice! "event.stopPropagation()" just can stop event propagate to window, can't stop propagate to document,</p>
           <p>that's why we use "window.addEventListener()" here, not "document.addEventListener()".</p>
-          <DropDown4/>
-          <DropDown5/>
-          <DropDown6/>
+          <div style={{display: 'flex'}}>
+            <DropDown4/>
+            <DropDown5/>
+            <DropDown6/>
+          </div>
         </div>
       </div>
     );

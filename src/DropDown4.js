@@ -30,6 +30,7 @@ export default class DropDown4 extends React.Component {
     console.log('head click')
 
     this.setState(prevState => ({dropDownExpanded: !prevState.dropDownExpanded}))
+    // must!
     event.stopPropagation()
   }
 
