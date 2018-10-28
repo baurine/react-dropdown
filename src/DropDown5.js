@@ -1,5 +1,6 @@
 import React from 'react'
 import './DropDown.css'
+import NativeClickListener from './NativeClickListener';
 
 const OPTIONS = [
   { key: 1, text: 'Option 1', checked: false },
@@ -7,28 +8,17 @@ const OPTIONS = [
   { key: 3, text: 'Option 3', checked: false },
 ]
 
-export default class DropDown4 extends React.Component {
+export default class DropDown5 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       dropDownExpanded: false,
-
       options: OPTIONS
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('click', this.handleGlobalClick)
-  }
-
-  componentWillUnmount() {
-    // important! we need remove global click handler when unmout
-    window.removeEventListener('click', this.handleGlobalClick)
-  }
-
   handleHeadClick = (event) => {
     console.log('head click')
-
     this.setState(prevState => ({dropDownExpanded: !prevState.dropDownExpanded}))
     event.stopPropagation()
   }
@@ -37,11 +27,6 @@ export default class DropDown4 extends React.Component {
     console.log('body click')
     // just can stop event propagate from document to window
     event.stopPropagation()
-  }
-
-  handleGlobalClick = () => {
-    console.log('global click')
-    this.setState({dropDownExpanded: false})
   }
 
   handleOptionClick = (event, option) => {
@@ -61,27 +46,29 @@ export default class DropDown4 extends React.Component {
       <div className="dropdown-container">
         <div className="dropdown-head">
           <button onClick={this.handleHeadClick}>
-            {dropDownExpanded ? 'Collapse' : 'Open'} dropdown menu - 4
+            {dropDownExpanded ? 'Collapse' : 'Open'} dropdown menu - 5
           </button>
         </div>
         {
           dropDownExpanded &&
-          <div className="dropdown-body"
-               onClick={this.handleBodyClick}>
-            <ul>
-              {
-                this.state.options.map(option =>
-                  <li key={option.key}
-                      className="dropdown-item">
-                    <input type='checkbox'
-                           checked={option.checked}
-                           onChange={(e)=>this.handleOptionClick(e, option)}></input>
-                    {option.text}
-                  </li>
-                )
-              }
-            </ul>
-          </div>
+          <NativeClickListener onClick={()=>this.setState({dropDownExpanded: false})}>
+            <div className="dropdown-body"
+                onClick={this.handleBodyClick}>
+              <ul>
+                {
+                  this.state.options.map(option =>
+                    <li key={option.key}
+                        className="dropdown-item">
+                      <input type='checkbox'
+                            checked={option.checked}
+                            onChange={(e)=>this.handleOptionClick(e, option)}></input>
+                      {option.text}
+                    </li>
+                  )
+                }
+              </ul>
+            </div>
+          </NativeClickListener>
         }
       </div>
     )
