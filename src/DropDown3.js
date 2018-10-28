@@ -7,7 +7,7 @@ const OPTIONS = [
   { key: 3, text: 'Option 3', checked: false },
 ]
 
-export default class DropDrow3 extends React.Component {
+export default class DropDown3 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
