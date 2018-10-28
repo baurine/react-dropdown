@@ -24,7 +24,6 @@ export default class DropDown6 extends React.Component {
 
   handleBodyClick = (event) => {
     console.log('body click')
-    // just can stop event propagate from document to window
   }
 
   handleOptionClick = (event, option) => {
